@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateSkisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('color');
             $table->integer('length');
-            $table->foreignId('brand_id');
+            
             $table->foreignId('type_id');
             $table->foreignId('user_id');
             $table->timestamps();

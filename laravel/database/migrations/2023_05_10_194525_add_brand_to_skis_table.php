@@ -4,17 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypesTable extends Migration
+class AddBrandToSkisTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
+        Schema::table('skis', function (Blueprint $table) {
+            $table->foreignId('brand_id');
         });
     }
 
@@ -23,6 +21,8 @@ class CreateTypesTable extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('skis', function (Blueprint $table) {
+            $table->removeColumn('brand_id');
+        });
     }
 };
