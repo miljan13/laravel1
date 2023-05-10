@@ -18,6 +18,8 @@ class BrandFactory extends Factory
     {
         return [
             //
+            'name'=>$this->faker->word(),
+            'country'=>$this->faker->word()
         ];
     }
 }

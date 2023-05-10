@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('model');
             $table->string('color');
-            $table->int('length');
+            $table->integer('length');
+            $table->foreignId('brand_id');
+            $table->foreignId('type_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
