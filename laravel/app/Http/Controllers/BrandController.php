@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
@@ -31,7 +33,23 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator=Validator::make($request->all(),[
+            'name'=>'required|String|max:255',
+            'country' => 'required|String|max:255'
+
+
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+        $brand=new Brand;
+        $brand->name=$request->name;
+        $brand->country=$request->country;
+
+
+        $brand->save();
+
+        return response()->json(['Brend je uspesno sacuvan!',new BrandResource($brand)]);
     }
 
     /**
